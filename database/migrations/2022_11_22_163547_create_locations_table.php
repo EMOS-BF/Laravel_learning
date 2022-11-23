@@ -17,9 +17,15 @@ return new class extends Migration
             $table->id();
             $table->dateTime('dateDebut');
             $table->dateTime('dateFin');
-            $table->foreignId('client_id')->constrained();
-            $table->foreignId('statutlocation_id')->constrained();
-            $table->foreignId('user_id')->constrained();
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients');
+            //$table->foreignId('client_id')->constrained();
+            $table->unsignedBigInteger('statutlocation_id');
+            $table->foreign('statutlocation_id')->references('id')->on('statutlocations');
+            //$table->foreignId('statutlocation_id')->constrained();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
+            //$table->foreignId('user_id')->constrained();
         });
         Schema::enableForeignKeyConstraints();
     }
@@ -32,7 +38,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('locations', function(Blueprint $table){
-            $table->dropForeign(["client_id","statut_location_id", "user_id"]);
+            $table->dropForeign(["client_id","statutlocation_id", "user_id"]);
         });
         Schema::dropIfExists('locations');
     }
