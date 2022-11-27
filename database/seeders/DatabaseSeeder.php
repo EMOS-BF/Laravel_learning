@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Chambre;
 use Illuminate\Database\Seeder;
 use Database\Seeders\ChambreSeeder;
+use App\Models\User;
 use Database\Seeders\TypeChambreSeeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -27,11 +28,12 @@ class DatabaseSeeder extends Seeder
     // ]);
     $this->call(TypeChambreSeeder::class);
 
-    Chambre::factory(100)->create();
+    Chambre::factory(10)->create();
+    User::factory(10)->create();
     $this->call(DurreeLocationSeeder::class);
     $this->call(PermissionSeeder::class);
     $this->call(RoleSeeder::class);
     $this->call(StatutLocationSeeder::class);
-    Client::factory(100)->create();
+    Client::factory(10)->create();
     }
 }

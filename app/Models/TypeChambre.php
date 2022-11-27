@@ -9,5 +9,7 @@ class TypeChambre extends Model
 {
     use HasFactory;
 
-   // protected $fillable = ['Description'];
+    public function chambres(){
+        return $this-> hasMany(Chambre::class);
+       }
 }

@@ -17,11 +17,14 @@ return new class extends Migration
             $table->id();
             $table->string('nom');
             $table->string('prenom');
-            $table->string('telephone');
+            $table->char("sexe");
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('telephone1')->unique();
+            $table->string('telephone2')->unique();
+            $table->string('pieceIdentite');
+            //$table->timestamp('email_verified_at')->nullable();
             $table->string('photo')->nullable();
+            $table->string('password');
             $table->timestamps();
         });
     }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Chambre;
+use App\Models\TypeChambre;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +17,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/chambres', function () {
+    return Chambre::with("type")->paginate(5);
+});
+
+Route::get('/type_chambres', function () {
+    return TypeChambre::with("chambre")->paginate(5);
 });
