@@ -18,8 +18,13 @@ return new class extends Migration
             $table->string("numero_de_chambre");
             $table->string("imageUrl")->nullable();
             $table->boolean("EstDisponible")->default(1);
+            $table->foreignId("type_chambre_id")->constrained();
+            //$table->unsignedBigInteger('user_id');
+            //$table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,6 +34,10 @@ return new class extends Migration
      */
     public function down()
     {
+        Schema::table('chambres', function(Blueprint $table){
+            $table->dropForeign(["type_chambre_id"]);
+        });
+        
         Schema::dropIfExists('chambres');
     }
 };
