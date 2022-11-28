@@ -1,7 +1,6 @@
 <?php
 
-use App\Models\Chambre;
-use App\Models\TypeChambre;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,10 +18,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/chambres', function () {
-    return Chambre::with("type")->paginate(5);
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/type_chambres', function () {
-    return TypeChambre::with("chambre")->paginate(5);
-});
+require __DIR__.'/auth.php';
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
