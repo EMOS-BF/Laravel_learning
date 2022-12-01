@@ -14,8 +14,7 @@
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
     <!-- Scripts -->
-    <link href="{{asset('css/app.css')}}"  rel="stylesheet">
-    <script src="{{asset('js/app.js')}}" defer></script> 
+    <link href="{{asset('css/app.css')}}"  rel="stylesheet"> 
 </head>
 <body>
     <div id="app">
@@ -30,7 +29,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+    
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -45,13 +44,14 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
+                                    
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->nom }}
+                                    {{ Auth::user()->nom }}  {{ Auth::user()->prenom }} 
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -76,5 +76,6 @@
             @yield('content')
         </main>
     </div>
+    <script src="{{asset("js/app.js")}}"></script>
 </body>
 </html>
