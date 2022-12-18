@@ -165,19 +165,19 @@ class Utilisateurs extends Component
 
     }
 
-   /* public function confirmPwdReset(){
+    public function confirmPwdReset(){
         $this->dispatchBrowserEvent("showConfirmMessage", ["message"=> [
             "text" => "Vous êtes sur le point de réinitialiser le mot de passe de cet utilisateur. Voulez-vous continuer?",
             "title" => "Êtes-vous sûr de continuer?",
             "type" => "warning"
         ]]);
-    }*/
-
-   /*public function resetPassword(){
+    }
+   
+   public function resetPassword($id){
 
         User::find($this->editUser["id"])->update(["password" => Hash::make(DEFAULTPASSOWRD)]);
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Mot de passe utilisateur réinitialisé avec succès!"]);
-    }*/
+    }
 
     public function confirmDelete($name, $id){
         $this->dispatchBrowserEvent("showConfirmMessage", ["message"=> [

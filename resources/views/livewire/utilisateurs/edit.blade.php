@@ -98,7 +98,7 @@
 
     </div>
 
-   {{-- <div class="col-md-6">
+    <div class="col-md-6">
         <div class="row ">
             <div class="col-md-12">
                 <div class="card card-primary">
@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 mt-4">
+            {{--<div class="col-md-12 mt-4">
                 <div class="card card-primary">
                     <div class="card-header d-flex align-items-center">
                     <h3 class="card-title flex-grow-1"><i class="fas fa-fingerprint fa-2x"></i> Roles & permissions</h3>
@@ -173,7 +173,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div>--}}
         </div>
-    </div>--}}
+    </div>
 </div>

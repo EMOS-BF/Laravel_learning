@@ -45,7 +45,7 @@
               @this.deleteUser(event.detail.message.data.user_id)
           }
 
-          @this.resetPassword()
+          @this.resetPassword($id)
 
       }
       })
