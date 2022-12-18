@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\TypeChambre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -14,6 +15,9 @@ class typechambreFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    //protected $model = TypeChambre::class;
+
     public function definition()
     {
         return [

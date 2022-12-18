@@ -18,7 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
+        'sexe',
+        'pieceIdentite',
+        'telephone1',
+        'telephone2',
         'email',
         'password',
     ];
@@ -53,5 +58,17 @@ class User extends Authenticatable
     public function permission(){
         return $this-> belongsToMany(Permission::class,"users_permission",'user_id','permission_id');
        }
+
+    public function hasRole($role){
+        return $this->role()->where("nom", $role)->first() !== null;
+    }
+
+    public function hasAnyRoles($roles){
+        return $this->role()->whereIn("nom", $roles)->first() !== null;
+    }
+
+    /*public function getAllRoleNamesAttribute(){
+        return $this->roles->implode("nom", ' | ');
+    }*/
     
 }

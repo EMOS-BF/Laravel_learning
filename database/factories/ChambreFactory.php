@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Chambre;
 use App\Models\TypeChambre;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -15,6 +16,8 @@ class ChambreFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    //protected $model = Chambre::class;
     public function definition()
     {
         return [
