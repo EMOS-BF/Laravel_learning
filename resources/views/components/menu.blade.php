@@ -78,8 +78,8 @@
               </li>
             </ul>
         </li>
-        <li class="nav-item ">
-            <a href="#" class="nav-link ">
+        <li class="nav-item {{setMenuClass('admin.geschambres.', 'menu-open') }}">
+            <a href="#" class="nav-link {{ setMenuClass('admin.geschambres.', 'active') }}">
                 <i class="nav-icon fas fa-cogs"></i>
                 <p>
                 Gestion des chambres
@@ -88,15 +88,15 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href=""
-                        class="nav-link ">
+                    <a href="{{ route('admin.geschambres.typechambres') }}"
+                        class="nav-link {{ setMenuActive('admin.geschambres.typechambres') }}">
                     <i class="nav-icon far fa-circle"></i>
                     <p>Type de chambre</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href=""
-                        class="nav-link ">
+                    <a href="{{ route('admin.geschambres.chambres') }}"
+                    class="nav-link {{ setMenuActive('admin.geschambres.chambres') }}">
                     <i class="nav-icon fas fa-list-ul"></i>
                     <p>Chambres</p>
                     </a>

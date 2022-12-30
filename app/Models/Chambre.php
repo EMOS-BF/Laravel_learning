@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Chambre extends Model
 {
     use HasFactory;
+    
+    protected $fillable = [
+        "numero_de_chambre",
+        "EstDisponible",
+        "type_chambre_id",
+        "imageUrl",
+    ];
+
+
    public function type(){
     return $this-> BelongsTo(TypeChambre::class,'type_chambre_id','id');
    }

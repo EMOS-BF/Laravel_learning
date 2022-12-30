@@ -84,29 +84,29 @@ class Utilisateurs extends Component
     }
 
     /*public function populateRolePermissions(){
-        $this->rolePermissions["roles"] = [];
-        $this->rolePermissions["permissions"] = [];
+        $this->rolePermissions["role"] = [];
+        $this->rolePermissions["permission"] = [];
 
         $mapForCB = function($value){
             return $value["id"];
         };
-
-        $roleIds = array_map($mapForCB, User::find($this->editUser["id"])->roles->toArray()); // [1, 2, 4]
-        $permissionIds = array_map($mapForCB, User::find($this->editUser["id"])->permissions->toArray()); // [1, 2, 4]
-
+        $roleIds = array_map($mapForCB, User::find($this->editUser["id"])->role->toArray()); // [1, 2, 4]
+        //dump($roleIds);
+        $permissionIds = array_map($mapForCB, User::find($this->editUser["id"])->permission->toArray()); // [1, 2, 4]
+        
         foreach(Role::all() as $role){
             if(in_array($role->id, $roleIds)){
-                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>true]);
+                array_push($this->rolePermissions["role"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>true]);
             }else{
-                array_push($this->rolePermissions["roles"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>false]);
+                array_push($this->rolePermissions["role"], ["role_id"=>$role->id, "role_nom"=>$role->nom, "active"=>false]);
             }
         }
 
-        foreach(Permission::all() as $permission){
+        /*foreach(Permission::all() as $permission){
             if(in_array($permission->id, $permissionIds)){
-                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>true]);
+                array_push($this->rolePermissions["permission"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>true]);
             }else{
-                array_push($this->rolePermissions["permissions"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>false]);
+                array_push($this->rolePermissions["permission"], ["permission_id"=>$permission->id, "permission_nom"=>$permission->nom, "active"=>false]);
             }
         }
 
@@ -190,9 +190,9 @@ class Utilisateurs extends Component
         ]]);
     }
 
-    public function deleteUser($id){
+   /* public function deleteUser($id){
         User::destroy($id);
 
         $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Utilisateur supprimé avec succès!"]);
-    }
+    }*/
 }

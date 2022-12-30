@@ -6,6 +6,10 @@ define("PAGELIST", "liste");
 define("PAGECREATEFORM", "create");
 define("PAGEEDITFORM", "edit");
 
+define("CHAMBRELIST", "liste");
+define("CHAMBREADDFORM", "add");
+define("CHAMBREEDITFORM", "edit");
+
 define("DEFAULTPASSOWRD", "password");
 
 

@@ -54,11 +54,17 @@ class User extends Authenticatable
     public function role(){
         return $this-> belongsToMany(Role::class,"users_role",'user_id','role_id');
        }
+    /*public function roles(){
+        return $this-> belongsToMany(Role::class,"users_role",'user_id','role_id');
+       } */ 
 
     public function permission(){
         return $this-> belongsToMany(Permission::class,"users_permission",'user_id','permission_id');
        }
 
+    /*public function permissions(){
+        return $this-> belongsToMany(Permission::class,"users_permission",'user_id','permission_id');
+       }*/
     public function hasRole($role){
         return $this->role()->where("nom", $role)->first() !== null;
     }
