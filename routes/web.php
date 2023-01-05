@@ -1,13 +1,15 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
+use App\Http\Livewire\TarifComp;
 use App\Http\Livewire\ChambreComp;
 use App\Http\Livewire\Typechambre;
-use App\Http\Livewire\TypeChambreComp;
+use App\Http\Livewire\LocationComp;
 use App\Http\Livewire\Utilisateurs;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\TypeChambreComp;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,8 @@ Route::group([
 
         Route::get("/typechambres", TypeChambreComp::class)->name("typechambres");
         Route::get("/chambres", ChambreComp::class)->name("chambres");
+        Route::get("/chambres/{chambreId}/tarifs", TarifComp::class)->name("chambres.tarifs");
+        Route::get("/locations", LocationComp::class)->name("locations");
 
     });
 

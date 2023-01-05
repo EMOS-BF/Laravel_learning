@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tarifications', function (Blueprint $table) {
             $table->id();
-            $table->double("prix");
+            $table->double("prix")->nullable();
             $table->foreignId("duree_location_id")->constrained();
             $table->foreignId("chambre_id")->constrained();
             $table->timestamps();

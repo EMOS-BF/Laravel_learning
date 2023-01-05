@@ -2,12 +2,15 @@
 
 namespace App\Http\Livewire;
 
+//use Nette\Utils\Image;
 use App\Models\Chambre;
-use App\Models\TypeChambre;
 use Livewire\Component;
-use Illuminate\Support\Carbon;
-use Livewire\WithFileUploads;
+use App\Models\TypeChambre;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Carbon;
+
+
 
 class ChambreComp extends Component
 {
@@ -17,7 +20,16 @@ class ChambreComp extends Component
     public $search = "";
     public $filtreType = "", $filtreEtat = "";
     public $addChambre = [];
+    public $editChambre = [];
     public $addPhoto = null;
+    public $editPhoto = null;
+
+    protected $rules = [
+        'editChambre.numero_de_chambre' =>"required", //["required", Rule::unique("articles", "nom")->ignore($this->editArticle["id"])],
+        'editChambre.EstDisponible' =>"required", //["required", Rule::unique("articles", "noSerie")->ignore($this->editArticle["id"])],
+        'editChambre.type_chambe_id' =>"", //'required|exists:App\Models\TypeArticle,id',
+        'editChambre.imageUrl' =>""
+    ];
     // public $proprietesChambres = []; pour les propriété
     public function render()
     {
@@ -48,6 +60,10 @@ class ChambreComp extends Component
 
     public function closeModal(){
         $this->dispatchBrowserEvent("closeModal");
+    }
+
+    public function closeEditModal(){
+        $this->dispatchBrowserEvent("closeEditModal");
     }
     // public function updated($property){ pour les propriétés
     //     if($property == "addArticle.type"){
@@ -93,17 +109,17 @@ class ChambreComp extends Component
         $validatedData = $this->validate($validateArr);
 
          // par défaut notre image est une placeholder
-        //  $imagePath = "images/imageplaceholder.png";
-         $imagePath = "";
+         $imagePath = "images/imageplaceholder.png";
+         
 
          if($this->addPhoto != null){
 
-            //  $path = $this->addPhoto->store('upload', 'public');
+            //$path = $this->addPhoto->store('upload', 'public');
             $imagePath = $this->addPhoto->store('upload', 'public');
-            //  $imagePath = "storage/".$path;
+            //$imagePath = "storage/".$path;
 
-            //  $image = Image::make(public_path($imagePath))->fit(200, 200);
-            //  $image->save();
+            //$image = Image::make(public_path("storage/".$imagePath))->fit(200, 200);
+            //$image->save();
 
          }
 
@@ -140,16 +156,43 @@ class ChambreComp extends Component
         $this->dispatchBrowserEvent("showModal");
     }
 
-    public function ModifierChambre(){
-        $this->currentPage = CHAMBREEDITFORM;
+    public function editChambre(Chambre $chambre){
+        $this->editChambre = $chambre->toArray();
+         
+    }
+    public function updateChambre(){
+        $this->validate();
+        $chambre = Chambre::find($this->editChambre["id"]);
+        $chambre->fill($this->editChambre);
+        $imagePath = "images/imageplaceholder.png";
+        if($this->editPhoto != null){
+            $imagePath = $this->addPhoto->store('upload', 'public');
+            $chambre->imageUrl = $imagePath;
+        }
+
+        $chambre->save();
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=> "La chambre a été mis à jour avec succès!"]);
     }
 
-    public function editChambre(){
-
+    public function confirmDelete(Chambre $chambre){
+        $this->dispatchBrowserEvent("showConfirmMessage", ["message"=> [
+            "text" => "Vous êtes sur le point de supprimer la chambre N° ". $chambre->numero_de_chambre ." de la liste des chambres. Voulez-vous continuer?",
+            "title" => "Êtes-vous sûr de continuer?",
+            "type" => "warning",
+            "data" => [
+                "chambre_id" => $chambre->id
+            ]
+        ]]); 
     }
 
-    public function confirmDelete(){
+    public function deleteChambre(Chambre $chambre){
+        if(count($chambre->locations)>0) return;
+        
+        if(count($chambre->tarifications) > 0)
+            $chambre->tarifications()->where("chambre_id", $chambre->id)->delete();
 
+        $chambre->delete();
+
+        $this->dispatchBrowserEvent("showSuccessMessage", ["message"=>"Chambre supprimé avec succès!"]);
     }
-
 }

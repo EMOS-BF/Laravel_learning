@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
     // ]);
     $this->call(TypeChambreSeeder::class);
 
-    Chambre::factory(150)->create();
+    //Chambre::factory(150)->create();
     User::factory(150)->create();
     $this->call(DurreeLocationSeeder::class);
     $this->call(PermissionSeeder::class);

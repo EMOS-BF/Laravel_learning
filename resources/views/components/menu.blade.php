@@ -70,12 +70,12 @@
                   <p>Utilisateurs</p>
                 </a>
               </li>
-              <li class="nav-item">
+              {{-- <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-fingerprint"></i>
                   <p>Roles et permissions</p>
                 </a>
-              </li>
+              </li> --}}
             </ul>
         </li>
         <li class="nav-item {{setMenuClass('admin.geschambres.', 'menu-open') }}">
@@ -106,25 +106,25 @@
         </li>
         @endcan
         @can("employer")
-        <li class="nav-header">LOCATION</li>
+        {{-- <li class="nav-header">LOCATION</li> --}}
         <li class="nav-item">
-            <a href="" class="nav-link ">
+            <a  href="{{ route('admin.geschambres.locations')}}" class="nav-link ">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                Gestion des clients
+                Reservation
                 </p>
             </a>
         </li>
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-exchange-alt"></i>
                 <p>
                 Gestion des locations
                 </p>
             </a>
-        </li>
+        </li> --}}
 
-        <li class="nav-header">CAISSE</li>
+        {{-- <li class="nav-header">CAISSE</li>
         <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-coins"></i>
@@ -132,7 +132,7 @@
                 Gestion des paiements
                 </p>
             </a>
-        </li>
+        </li> --}}
       @endcan
     </ul>
     </nav>

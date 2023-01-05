@@ -56,8 +56,6 @@
                               <td>
                                 @if ($chambre->imageUrl != "" || $chambre->imageUrl != null)
                                     <img src="{{asset('storage/'.$chambre->imageUrl)}}" alt="" style="width:60px;height:60px;">
-                                @else
-                                    <img src="{{asset('images/imageplaceholder.png')}}" alt="" style="width:60px;height:60px;">
                                 @endif
                               </td>
                               <td>{{ $chambre->numero_de_chambre }} </td>
@@ -72,11 +70,11 @@
                               <td class="text-center">{{ optional($chambre->created_at)->diffForHumans() }}</td>
                               <td class="text-center">
 
-                                  {{-- <a 
+                                  <a 
                                   title="Tarifs {{ $chambre->numero_de_chambre }}"
-                                  href="{{ route('admin.gestarticles.articles.tarifs', ['articleId'=> $article->id]) }}" class="btn btn-link" > <i class="fas fa-money-check"></i> </a> --}}
+                                  href="{{ route('admin.geschambres.chambres.tarifs', ['chambreId'=> $chambre->id]) }}" class="btn btn-link" > <i class="fas fa-money-check"></i> </a> 
 
-                                  <button class="btn btn-link" wire:click="editChambre({{$chambre->id}})"> <i class="far fa-edit"></i> </button>
+                                  <button type="button" class="btn btn-link" data-toggle="modal"  data-target="#editmodal" wire:click="editChambre({{$chambre->id}})"> <i class="far fa-edit"></i> </button>
 
                                   <button class="btn btn-link" wire:click="confirmDelete({{$chambre->id}})"> <i class="far fa-trash-alt"></i> </button>
 

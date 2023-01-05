@@ -22,7 +22,7 @@ class ChambreFactory extends Factory
     {
         return [
             "numero_de_chambre"=> rand(1,10),
-            "imageUrl"=> $this->faker->imageUrl(),
+            "imageUrl"=> "images/imageplaceholder.png",
             // "type_chambre_id" =>TypeChambre::all()->random()->id,
             "type_chambre_id" =>rand(1,2),
             "EstDisponible"=>rand(0, 1)
